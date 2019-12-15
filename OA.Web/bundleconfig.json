@@ -1,0 +1,27 @@
+{
+  [
+    {
+      "outputFileName": "wwwroot/app/bundle.min.css",
+      "inputFiles": [
+        "wwwroot/css/site.css",
+        "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
+      ],
+      "minify": { "enabled": true }
+    },
+    {
+      "inputFiles": [
+        "wwwroot/lib/jquery/dist/jquery.js",
+        "wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+        "wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+        "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+      ],
+      "outputFileName": "wwwroot/app/bundle.min.js",
+      "minify": {
+        "enabled": true
+      },
+      "SourceMap": false
+    }
+  ]
+
+}
+  
