@@ -1,0 +1,23 @@
+2020-02-29 23:17:47.7459|INFO|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|User profile is available. Using 'C:\Users\Kumar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-02-29 23:17:49.7850|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:54406/api/Employee  
+2020-02-29 23:21:21.2022|INFO|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|User profile is available. Using 'C:\Users\Kumar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-02-29 23:21:23.3619|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:54406/api/Employee  
+2020-02-29 23:24:14.0661|INFO|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|User profile is available. Using 'C:\Users\Kumar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-02-29 23:24:15.1228|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:54406/api/Employee  
+2020-02-29 23:24:26.8669|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2020-02-29 23:24:27.1289|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'WebAPI.Controllers.EmployeeController.Details (WebAPI)'
+2020-02-29 23:24:27.2897|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Route matched with {action = "Details", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Details() on controller WebAPI.Controllers.EmployeeController (WebAPI).
+2020-02-29 23:24:30.1697|INFO|Microsoft.EntityFrameworkCore.Infrastructure|Entity Framework Core 2.2.6-servicing-10079 initialized 'CoreDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-02-29 23:24:30.1949|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method WebAPI.Controllers.EmployeeController.Details (WebAPI) - Validation state: Valid
+2020-02-29 23:24:32.5471|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (316ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [e].[Id], [e].[Department], [e].[Email], [e].[Name]
+FROM [Employee] AS [e]
+2020-02-29 23:24:32.6948|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action method WebAPI.Controllers.EmployeeController.Details (WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2452.8622ms.
+2020-02-29 23:24:32.7939|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|Executing ObjectResult, writing value of type 'Entities.Employee[]'.
+2020-02-29 23:24:33.4083|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action WebAPI.Controllers.EmployeeController.Details (WebAPI) in 6065.9207ms
+2020-02-29 23:24:33.4300|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'WebAPI.Controllers.EmployeeController.Details (WebAPI)'
+2020-02-29 23:24:33.4707|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 18348.1956ms 200 application/json; charset=utf-8
+2020-02-29 23:24:42.1937|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:54406/swagger/index.html  
+2020-02-29 23:24:42.5770|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 382.9268ms 200 text/html;charset=utf-8
+2020-02-29 23:24:43.1163|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:54406/swagger/v1/swagger.json  
+2020-02-29 23:24:43.6828|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 566.2922ms 200 application/json;charset=utf-8

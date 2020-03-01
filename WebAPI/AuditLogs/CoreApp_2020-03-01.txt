@@ -1,0 +1,25 @@
+2020-03-01 15:08:14.1391|INFO|Microsoft.EntityFrameworkCore.Infrastructure|Entity Framework Core 2.2.6-servicing-10079 initialized 'CoreDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-03-01 15:21:22.8107|INFO|Microsoft.EntityFrameworkCore.Infrastructure|Entity Framework Core 2.2.6-servicing-10079 initialized 'CoreDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-03-01 15:21:25.4774|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (77ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2020-03-01 15:21:26.3029|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (665ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2020-03-01 15:21:26.3029|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2020-03-01 15:21:26.3788|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (68ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2020-03-01 15:21:26.4147|INFO|Microsoft.EntityFrameworkCore.Migrations|Applying migration '20200301093814_InitialDBCreation'.
+2020-03-01 15:21:27.7598|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (524ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Employee] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(max) NOT NULL,
+    [Email] nvarchar(max) NOT NULL,
+    [Department] nvarchar(max) NULL,
+    CONSTRAINT [PK_Employee] PRIMARY KEY ([Id])
+);

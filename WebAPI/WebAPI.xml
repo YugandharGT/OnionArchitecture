@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:WebAPI.Controllers.EmployeeController">
+            <summary>
+            It contains the employee related operations
+            </summary>
+        </member>
+        <member name="M:WebAPI.Controllers.EmployeeController.#ctor(OA.Interface.IEmployeeRepository)">
+            <summary>
+            Inject database dependency 
+            </summary>
+            <param name="_employeeRepo">Pass reference of employee repository</param>
+        </member>
+        <member name="M:WebAPI.Controllers.EmployeeController.Details">
+            <summary>
+            It performs get request of employees
+            </summary>
+            <returns>It returns all employees list</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.EmployeeController.Index(System.Nullable{System.Int32})">
+            <summary>
+            It performs get request based on id
+            </summary>
+            <param name="id">Pass an employee id </param>
+            <returns>It returns corresponding employee detail</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.EmployeeController.Save(Entities.Employee)">
+            <summary>
+             It inserts employee details
+            </summary>
+            <param name="value">Pass Employee Details</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.EmployeeController.Put(System.Int32,Entities.Employee)">
+            <summary>
+            It updates employee details based on emp id
+            </summary>
+            <param name="id">Pass an employee id</param>
+            <param name="value">Pass employee details which needs to update</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.EmployeeController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            It deletes the employee details
+            </summary>
+            <param name="id">Pass an employee id</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
