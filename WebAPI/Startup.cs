@@ -1,4 +1,4 @@
-﻿using System; 
+using System; 
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,14 +36,15 @@ namespace WebAPI
             //services.AddMemoryCache();
             //services.AddSession();
 
+            services.AddSwaggerGen(s => { 
+            });
             //Framework
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<CoreDbContext>(opt => opt.UseSqlServer(_config.GetConnectionString("CoreDbConnection"), options => options.EnableRetryOnFailure()));
-            services.AddDbContext<CoreDbContext>(opt => opt.UseInMemoryDatabase("EmployeeList"));
 
             //DI
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeTaskRepository, EmployeeTaskRepository>();
             //services.AddLogging();
 
             //services.AddScoped<IGenericRepository<Employee>, GenericRepository<Employee>>();
@@ -52,6 +53,12 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+            });
+
             //loggerFactory.AddFile("Logs/CoreApp_{Date}.txt");
             if (env.IsDevelopment())
             {
