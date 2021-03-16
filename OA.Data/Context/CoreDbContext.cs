@@ -19,8 +19,11 @@ namespace OA.Data.Context
         {
             base.OnModelCreating(modelBuilder);
             new EmployeeMap(modelBuilder.Entity<Employee>());
+            new EmailMap(modelBuilder.Entity<Email>());
+
         }
 
-        public DbSet<Employee> employees;
+        public DbSet<Employee> Employees;
+        public DbSet<Email> Emails;
     }
 }

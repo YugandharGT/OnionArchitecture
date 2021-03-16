@@ -30,7 +30,7 @@ namespace OA.Repo
             SaveChanges();
         }
 
-        public T GetById(object id) //object id
+        public T GetById(int? id) //object id
         {
             var entity = entities.Find(id);
             return entity;

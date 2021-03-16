@@ -9,7 +9,7 @@ namespace OA.Repo
     {
         IEnumerable<T> GetDetails();
 
-        T GetById(object id);
+        T GetById(int? id);
 
         void Insert(T entity);
 

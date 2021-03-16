@@ -1,0 +1,107 @@
+﻿@using Entities
+@using Blazorise
+
+@page "/employeelist"
+@inherits EmployeeListBase
+<style type="text/css">
+    .alignHeader{
+        text-align : center;
+    }
+</style>
+@if (Employees == null)
+{
+
+}
+else
+{
+
+    <DataGrid TItem="Employee" Data="@Employees" Filterable="true" Editable="true" ShowPager="true" PageSize="3" Bordered="true" Hoverable="true" EditMode="DataGridEditMode.Popup" HeaderRowClass="alignHeader">
+        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Id)" Caption="ID" Width="120" TextAlignment="TextAlignment.Center"  Sortable="true"></DataGridColumn>
+        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Name)" Caption="Name" Width="200" TextAlignment="TextAlignment.Center"  Sortable="true" Editable="true"></DataGridColumn>
+        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Email)" Caption="Email" Width="200" TextAlignment="TextAlignment.Center"  Sortable="true" Editable="true"></DataGridColumn>
+        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Department)" Caption="Department" Width="200" TextAlignment="TextAlignment.Center"  Sortable="true" Editable="true"></DataGridColumn>
+        <DataGridCommandColumn TItem="Employee" Width="200">
+            <NewCommandTemplate>
+                <Button Color="Color.Primary">New</Button>
+            </NewCommandTemplate>
+            <EditCommandTemplate>
+                <Button Color="Color.Secondary" Clicked="@ShowModal">Edit</Button>
+            </EditCommandTemplate>
+        </DataGridCommandColumn>
+    </DataGrid>
+
+    <Modal @ref="modalRef">
+        <ModalContent IsCentered="true">
+            <ModalHeader>
+                <ModalTitle>Employee Add/Edit</ModalTitle>
+                <CloseButton Clicked="@HideModal" />
+            </ModalHeader>
+            <ModalBody>
+                @*<Field>
+                    <TextEdit @bind-Value="@nameof(Employee.Name)" />
+                </Field>
+                <Field>
+                    <TextEdit @bind-Value="@nameof(Employee.Email)" />
+                </Field>
+                <Field>
+                    <TextEdit @bind-Value="@nameof(Employee.Department)" />
+                </Field>*@
+            </ModalBody>
+            <ModalFooter>
+                <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
+                <Button Color="Color.Primary" Clicked="@EditEmployee">Save Changes</Button>
+            </ModalFooter>
+        </ModalContent>
+    </Modal>
+
+    //SnackBar for undo delete
+
+
+    //#region Material Design
+    @*<MatButton Outlined="true" @onclick="@(e => OpenDialog(false))">Add Employee</MatButton>
+
+        <MatTable Items="@sortedData" Striped="true" AllowSelection="true" ShowFooter="true" RowClass="tester"
+                  FilterByColumnName="Name" DebounceMilliseconds="150" ShowPaging="true" UseSortHeaderRow="true" class="mat-elevation-z5">
+            <MatTableHeader>
+                <MatSortHeaderRow SortChanged="@SortData">
+                    <MatSortHeader>Id</MatSortHeader>
+                    <MatSortHeader SortId="name" Style="width:100px;">Name</MatSortHeader>
+                    <MatSortHeader SortId="email" Style="width:100px;">Email Id</MatSortHeader>
+                    <MatSortHeader SortId="department">Department</MatSortHeader>
+                    <td>Activity</td>
+                </MatSortHeaderRow>
+            </MatTableHeader>
+            <MatTableRow>
+                <td>@context.Id</td>
+                <td>@context.Name</td>
+                <td>@context.Email</td>
+                <td>@context.Department</td>
+                <td>
+                    <MatButton Raised="true" Icon="edit" title="Edit Employee" @onclick="@(e => OpenDialog(true))" Style="width:35px;"></MatButton>
+                    <MatButton Raised="true" Icon="restore_from_trash" title="Delete Employee" @onclick="@DeleteEmployee" Style="width:35px;"></MatButton>
+                </td>
+            </MatTableRow>
+        </MatTable>
+
+        <MatDialog @bind-IsOpen="@diaglogIsOpen">
+            <MatDialogTitle>Add/Edit Employee</MatDialogTitle>
+            <MatDialogContent>
+                <MatTextField @bind-Value="@employee.Name"></MatTextField>
+                <MatTextField @bind-Value="@employee.Email"></MatTextField>
+                <MatTextField @bind-Value="@employee.Department"></MatTextField>
+            </MatDialogContent>
+            <MatDialogActions>
+                <MatButton OnClick="Save">Add</MatButton>
+                <MatButton OnClick="CloseDialog">Close</MatButton>
+            </MatDialogActions>
+        </MatDialog>
+
+        <MatSnackbar @bind-IsOpen="@snackBar" Leading="true">
+            <MatSnackbarContent>Employee Deleted</MatSnackbarContent>
+            <MatSnackbarActions>
+                <MatButton Raised="true" OnClick="UndoDelete">Close</MatButton>
+            </MatSnackbarActions>
+        </MatSnackbar>*@
+    //#endregion
+
+}

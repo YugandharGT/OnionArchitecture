@@ -11,6 +11,9 @@ using OA.Repo;
 
 namespace WebAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/Employee")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -20,48 +23,59 @@ namespace WebAPI.Controllers
         //{
         //    genericRepository = _genericRepository;
         //}
-        readonly IEmployeeRepository employeeRepo;
+        readonly IEmployeeTaskRepository employeeRepo;
 
-        public EmployeeController(IEmployeeRepository _employeeRepo)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_employeeRepo"></param>
+        public EmployeeController(IEmployeeTaskRepository _employeeRepo)
         {
             employeeRepo = _employeeRepo;
         }
 
-        // GET api/values
+        #region Async Operations
+        /// <summary>
+        /// It retrieves the employees list
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Details()
+        [Route("GetEmployees")]
+        public async Task<ActionResult> GetEmployees()
         {
             try
             {
-                IEnumerable<Employee> emp = await employeeRepo.GetAll();
+                IEnumerable<Employee> emp = await employeeRepo.GetAllAsync();
                 if (emp == null)
                 {
                     return NotFound();
                 }
                 return Ok(emp);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Index(int? id)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]//
+        [Route("GetEmployeeById/{id}")]
+        public async Task<ActionResult<Employee>> GetEmployeeById( int id)
         {
-            if (id == null)
-            {
-                BadRequest();
-            }
             try
             {
-                Employee str = await employeeRepo.GetById(id);
+                var str = await employeeRepo.GetByIdAsync(id);
                 if (str == null)
                 {
                     return NotFound();
                 }
-                return Ok(str);
+                return str;
             }
             catch (Exception)
             {
@@ -69,79 +83,129 @@ namespace WebAPI.Controllers
             }
         }
 
-        // POST api/values
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Save([FromBody]Employee value)
+        [Route("SaveEmployee")]
+        public async Task<ActionResult<Employee>> SaveEmployee([FromBody] Employee value)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    #region TestCode
-                    //Employee account = new Employee
-                    //{
-                    //    Id = 1003,
-                    //    Name = "James",
-                    //    Email = "james@example.com",
-                    //    Department = "Medicine"
-                    //};
-
-                    //var jsonString = JsonConvert.SerializeObject(account, Formatting.Indented);
-                    //var myJsonObject = JsonConvert.DeserializeObject<Employee>(jsonString); 
-                    #endregion
-                    var postId = await employeeRepo.Insert(value);
-                    if (postId > 0) return Ok(postId); else return NotFound();
-                }
-                catch (Exception ex)
-                {
-                    //_logger.LogCritical(ex.Message);
-                    return BadRequest();
-                }
-            }
-            return BadRequest();
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]Employee value)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await employeeRepo.Update(id, value);
-                    return Ok();
-                }
-                catch (Exception ex)
-                {
-                    if (ex.GetType().FullName == "Microsoft.EntityFrameworkCore.DbConcurrencyException")
-                    {
-                        return NotFound();
-                    }
-                    return BadRequest();
-                }
-            }
-            return BadRequest();
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            var result = 0;
-            if (id == null)
-            {
-                return BadRequest();
-            }
-
+            
             try
             {
-                result = await employeeRepo.Remove(id);
-                if (result == 0)
+                #region TestCode
+                //Employee account = new Employee
+                //{
+                //    Id = 1003,
+                //    Name = "James",
+                //    Email = "james@example.com",
+                //    Department = "Medicine"
+                //};
+
+                //var jsonString = JsonConvert.SerializeObject(account, Formatting.Indented);
+                //var myJsonObject = JsonConvert.DeserializeObject<Employee>(jsonString); 
+                #endregion
+                if (value == null)
+                {
+                    return BadRequest();
+                }
+                var postId = await employeeRepo.InsertAsync(value);
+                if (postId == null)
+                {
+                    ModelState.AddModelError("Email", "Employee email already in use");
+                    return BadRequest(ModelState);
+                }
+                return CreatedAtAction(nameof(GetEmployeeById), new { id = postId.Id }, postId);
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogCritical(ex.Message);
+                return BadRequest(ex);
+            }
+            
+            
+        }
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [HttpPut]//
+        [Route("UpdateEmployee/{id}")]
+        public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody]Employee value)
+        {
+            try
+            {
+                if (id != value.Id)
+                {
+                    return BadRequest("Employee Id mismatch");
+                }
+                var empToUpdate = await employeeRepo.GetByIdAsync(id);
+                if (empToUpdate == null)
+                {
+                    return NotFound($"Employee with Id = {id} not found");
+                }
+                return await employeeRepo.UpdateAsync(value);
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().FullName == "Microsoft.EntityFrameworkCore.DbConcurrencyException")
                 {
                     return NotFound();
                 }
-                return Ok();
+                return BadRequest();
+            }
+        }
+
+        // DELETE api/values/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]//
+        [Route("DeleteEmployee/{id}")]
+        public async Task<ActionResult<Employee>> DeleteEmployee( int id)
+        {
+            try
+            {
+                var result = await employeeRepo.GetByIdAsync(id);
+                if (result == null)
+                {
+                    return NotFound($"Employee with Id={id} not found");
+                }
+                return await employeeRepo.RemoveAsync(id);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// It searches based on passed value 
+        /// </summary>
+        /// <param name="search">Pass any value</param>
+        /// <returns></returns>
+        [HttpGet] //
+        [Route("SearchEmployee/{search}")]
+        public async Task<ActionResult> SearchEmployee(string search)
+        {
+            try
+            {
+                var result = await employeeRepo.Search(search);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+                return NotFound();
             }
             catch (Exception)
             {
