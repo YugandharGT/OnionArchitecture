@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
@@ -21,7 +21,7 @@ namespace OA.Concrete
         }
 
         #region Asynchronous Db Activities
-        public async Task<Employee> GetByIdAsync(int? id)
+        public async Task<Employee> GetByIdAsync(int id)
         {
             if (db != null)
             {
@@ -42,8 +42,7 @@ namespace OA.Concrete
         public async Task<Employee> InsertAsync(Employee entity) //int
         {
             var result = await db.AddAsync(entity);
-            //SaveAsync();
-            await db.SaveChangesAsync();
+            SaveAsync();
             return result.Entity; //entity.Id;
             
         }
@@ -86,15 +85,6 @@ namespace OA.Concrete
            await db.SaveChangesAsync();
         }
         #endregion
-
-        public async Task<IEnumerable<Employee>> Search(string name)
-        {
-            var query = db.Set<Employee>().AsQueryable();
-            if (!string.IsNullOrEmpty(name))
-            {
-                query = query.Where(e => e.Name.Contains(name) || e.Email.Contains(name) || e.Department.Contains(name));
-            }
-            return await query.ToListAsync();
-        }
     }
 }
+

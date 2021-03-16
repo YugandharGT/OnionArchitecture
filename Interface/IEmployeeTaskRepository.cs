@@ -1,4 +1,4 @@
-﻿using Entities;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +9,9 @@ namespace OA.Interface
 {
     public interface IEmployeeTaskRepository
     {
-        Task<IEnumerable<Employee>> Search(string name);
-
         Task<IEnumerable<Employee>> GetAllAsync();
 
-        Task<Employee> GetByIdAsync(int? id);
+        Task<Employee> GetByIdAsync(int id);
 
         Task<Employee> InsertAsync(Employee entity);
 
@@ -22,3 +20,4 @@ namespace OA.Interface
         Task<Employee> RemoveAsync(int id);
     }
 }
+

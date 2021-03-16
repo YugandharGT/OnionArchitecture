@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +11,6 @@ using OA.Repo;
 
 namespace WebAPI.Controllers
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [Route("api/Employee")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -25,23 +22,15 @@ namespace WebAPI.Controllers
         //}
         readonly IEmployeeTaskRepository employeeRepo;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_employeeRepo"></param>
         public EmployeeController(IEmployeeTaskRepository _employeeRepo)
         {
             employeeRepo = _employeeRepo;
         }
 
         #region Async Operations
-        /// <summary>
-        /// It retrieves the employees list
-        /// </summary>
-        /// <returns></returns>
+        // GET api/values
         [HttpGet]
-        [Route("GetEmployees")]
-        public async Task<ActionResult> GetEmployees()
+        public async Task<ActionResult> Details()
         {
             try
             {
@@ -52,21 +41,15 @@ namespace WebAPI.Controllers
                 }
                 return Ok(emp);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex);
+                return BadRequest();
             }
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet]//
-        [Route("GetEmployeeById/{id}")]
-        public async Task<ActionResult<Employee>> GetEmployeeById( int id)
+        // GET api/values/5
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Employee>> Index(int id)
         {
             try
             {
@@ -83,15 +66,9 @@ namespace WebAPI.Controllers
             }
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        // POST api/values
         [HttpPost]
-        [Route("SaveEmployee")]
-        public async Task<ActionResult<Employee>> SaveEmployee([FromBody] Employee value)
+        public async Task<ActionResult<Employee>> Save(Employee value)
         {
             
             try
@@ -118,27 +95,20 @@ namespace WebAPI.Controllers
                     ModelState.AddModelError("Email", "Employee email already in use");
                     return BadRequest(ModelState);
                 }
-                return CreatedAtAction(nameof(GetEmployeeById), new { id = postId.Id }, postId);
+                return CreatedAtAction(nameof(Index), new { id = postId.Id }, postId);
             }
             catch (Exception ex)
             {
                 //_logger.LogCritical(ex.Message);
-                return BadRequest(ex);
+                return BadRequest();
             }
             
             
         }
 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        [HttpPut]//
-        [Route("UpdateEmployee/{id}")]
-        public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody]Employee value)
+        // PUT api/values/5
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Employee>> Put(int id, Employee value)
         {
             try
             {
@@ -164,14 +134,8 @@ namespace WebAPI.Controllers
         }
 
         // DELETE api/values/5
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpDelete]//
-        [Route("DeleteEmployee/{id}")]
-        public async Task<ActionResult<Employee>> DeleteEmployee( int id)
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<Employee>> Delete(int id)
         {
             try
             {
@@ -188,29 +152,5 @@ namespace WebAPI.Controllers
             }
         }
         #endregion
-
-        /// <summary>
-        /// It searches based on passed value 
-        /// </summary>
-        /// <param name="search">Pass any value</param>
-        /// <returns></returns>
-        [HttpGet] //
-        [Route("SearchEmployee/{search}")]
-        public async Task<ActionResult> SearchEmployee(string search)
-        {
-            try
-            {
-                var result = await employeeRepo.Search(search);
-                if (result.Any())
-                {
-                    return Ok(result);
-                }
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
     }
 }
