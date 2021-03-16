@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using OA.Concrete;
 using OA.Data.Context;
 using OA.Interface;
@@ -19,42 +20,67 @@ using OA.Repo;
 
 namespace WebAPI
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
         IConfiguration _config;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config"></param>
         public Startup(IConfiguration config)
         {
             _config = config;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration { get; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddMemoryCache();
             //services.AddSession();
 
-            services.AddSwaggerGen(s => { 
-            });
+            
             //Framework
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<CoreDbContext>(opt => opt.UseSqlServer(_config.GetConnectionString("CoreDbConnection"), options => options.EnableRetryOnFailure()));
 
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "OrderMyFood - RestaurantSearch HTTP API",
+                    Version = "v1",
+                    Description = "The Catalog Microservice HTTP API. This is a Data-Driven/CRUD microservice sample",
+                    
+                });
+            });
             //DI
             services.AddScoped<IEmployeeTaskRepository, EmployeeTaskRepository>();
             //services.AddLogging();
 
             //services.AddScoped<IGenericRepository<Employee>, GenericRepository<Employee>>();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI(s =>
+            app.UseSwagger()
+             .UseSwaggerUI(s =>
             {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
             });

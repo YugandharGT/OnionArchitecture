@@ -11,6 +11,9 @@ using OA.Repo;
 
 namespace WebAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/Employee")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -21,16 +24,23 @@ namespace WebAPI.Controllers
         //    genericRepository = _genericRepository;
         //}
         readonly IEmployeeTaskRepository employeeRepo;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_employeeRepo"></param>
         public EmployeeController(IEmployeeTaskRepository _employeeRepo)
         {
             employeeRepo = _employeeRepo;
         }
 
         #region Async Operations
-        // GET api/values
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult> Details()
+        [Route("EmployeeDetails")]
+        public async Task<ActionResult> EmployeeDetails()
         {
             try
             {
@@ -47,9 +57,14 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET api/values/5
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Employee>> Index(int id)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetEmployeeById/{id}")]
+        public async Task<ActionResult<Employee>> GetEmployeeById(int id)
         {
             try
             {
@@ -66,9 +81,14 @@ namespace WebAPI.Controllers
             }
         }
 
-        // POST api/values
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Employee>> Save(Employee value)
+        [Route("SaveEmployee")]
+        public async Task<ActionResult<Employee>> SaveEmployee([FromBody]Employee value)
         {
             
             try
@@ -95,20 +115,26 @@ namespace WebAPI.Controllers
                     ModelState.AddModelError("Email", "Employee email already in use");
                     return BadRequest(ModelState);
                 }
-                return CreatedAtAction(nameof(Index), new { id = postId.Id }, postId);
+                return CreatedAtAction(nameof(GetEmployeeById), new { id = postId.Id }, postId);
             }
             catch (Exception ex)
             {
                 //_logger.LogCritical(ex.Message);
-                return BadRequest();
+                return BadRequest(ex);
             }
             
             
         }
 
-        // PUT api/values/5
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<Employee>> Put(int id, Employee value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("UpdateEmployee/{id}")]
+        public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody] Employee value)
         {
             try
             {
@@ -133,9 +159,14 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult<Employee>> Delete(int id)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("DeleteEmployee/{id}")]
+        public async Task<ActionResult<Employee>> DeleteEmployee(int id)
         {
             try
             {
