@@ -56,20 +56,19 @@ namespace WebAPI
 
             services.AddSwaggerGen(options =>
             {
-                options.DescribeAllEnumsAsStrings();
+                
                 options.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "OrderMyFood - RestaurantSearch HTTP API",
+                    Title = "SampleAPI - HTTP API",
                     Version = "v1",
-                    Description = "The Catalog Microservice HTTP API. This is a Data-Driven/CRUD microservice sample",
+                    Description = "Test HTTP API",
                     
                 });
             });
             //DI
+            services.AddTransient<IEmailRepository, EmailRepository>();
             services.AddScoped<IEmployeeTaskRepository, EmployeeTaskRepository>();
-            //services.AddLogging();
-
-            //services.AddScoped<IGenericRepository<Employee>, GenericRepository<Employee>>();
+            
         }
         /// <summary>
         /// 
@@ -98,7 +97,6 @@ namespace WebAPI
 
             app.UseStaticFiles();
             app.UseDefaultFiles();
-            app.UseHttpsRedirection();
             app.UseMvc();
             
         }

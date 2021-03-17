@@ -133,15 +133,11 @@ namespace WebAPI.Controllers
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("UpdateEmployee/{id}")]
+        [Route("UpdateEmployee/{id:int}")]
         public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody] Employee value)
         {
             try
             {
-                if (id != value.Id)
-                {
-                    return BadRequest("Employee Id mismatch");
-                }
                 var empToUpdate = await employeeRepo.GetByIdAsync(id);
                 if (empToUpdate == null)
                 {
