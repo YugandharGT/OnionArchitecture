@@ -43,7 +43,7 @@ namespace BlazorServerApp.ClientService
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return await httpClient.GetJsonAsync<Employee[]>(url);
+            return await httpClient.GetJsonAsync<Employee[]>(string.Concat(url));
         }
     }
 }

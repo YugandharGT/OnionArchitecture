@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Ecomm\**" />
+    <Content Remove="Ecomm\**" />
+    <EmbeddedResource Remove="Ecomm\**" />
+    <None Remove="Ecomm\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Blazorise.Bootstrap" Version="0.9.0.3" />
     <PackageReference Include="Blazorise.DataGrid" Version="0.9.0.3" />

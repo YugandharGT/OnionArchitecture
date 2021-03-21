@@ -19,6 +19,16 @@ namespace BlazorServerApp
 {
     public class Startup
     {
+        string endpoint = null;
+
+        public Startup()
+        {
+            #if DEBUG
+              endpoint = "http://localhost:4200/";
+            #else
+                endpoint = "http://localhost:81/";
+            #endif
+        }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,6 +45,8 @@ namespace BlazorServerApp
             services.AddSingleton<WeatherForecastService>();
 
             services.AddScoped<HttpClient>();
+            
+
             services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
             {
                 client.BaseAddress = new Uri("http://localhost:81/");
