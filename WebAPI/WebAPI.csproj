@@ -61,4 +61,8 @@
     </Content>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA;copy /Y &quot;D:\Technology\Publish\CoreWebAPI\&quot; &quot;D:\Technology\Publish\Archive&quot;&#xD;&#xA;for /r &quot;$(TargetDir)&quot; %25%25I in (*.dll *.json *.config *.xml) do copy &quot;%25%25I&quot; &quot;D:\Technology\Publish\CoreWebAPI\&quot;&#xD;&#xA;)" />
+  </Target>
+
 </Project>

@@ -20,30 +20,30 @@ namespace BlazorServerApp.ClientService
 
         public async Task<Employee> Add()//Employee employee
         {
-            return await httpClient.GetJsonAsync<Employee>(url);
+            return await httpClient.GetJsonAsync<Employee>(string.Concat(url, "SaveEmployee"));
         }
 
         public async Task<Employee> Delete()
         {
             int id=0;
-            return await httpClient.GetJsonAsync<Employee>(string.Concat(url,id));
+            return await httpClient.GetJsonAsync<Employee>(string.Concat(url, "DeleteEmployee/", id));
         }
 
         public async Task<Employee> Edit()
         {
             int id = 0;//, Employee employee
-            return await httpClient.GetJsonAsync<Employee>(string.Concat(url, id));
+            return await httpClient.GetJsonAsync<Employee>(string.Concat(url, "UpdateEmployee/", id));
         }
 
         public async Task<Employee> GetById()
         {
             int id = 0;
-            return await httpClient.GetJsonAsync<Employee>(string.Concat(url, id));
+            return await httpClient.GetJsonAsync<Employee>(string.Concat(url, "GetEmployeeById/", id));
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return await httpClient.GetJsonAsync<Employee[]>(string.Concat(url));
+            return await httpClient.GetJsonAsync<Employee[]>(string.Concat(url, "EmployeeDetails"));
         }
     }
 }

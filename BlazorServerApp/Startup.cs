@@ -49,7 +49,7 @@ namespace BlazorServerApp
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
             {
-                client.BaseAddress = new Uri("http://localhost:81/");
+                client.BaseAddress = new Uri(endpoint);
             });
 
 
