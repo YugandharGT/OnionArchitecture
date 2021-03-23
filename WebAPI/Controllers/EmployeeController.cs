@@ -15,6 +15,7 @@ namespace WebAPI.Controllers
     /// 
     /// </summary>
     [Route("api/Employee")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {

@@ -12,6 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\EmployeeBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Employees.razor" />
+    <Content Remove="Pages\EmployeesList.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Blazorise.Bootstrap" Version="0.9.0.3" />
     <PackageReference Include="Blazorise.DataGrid" Version="0.9.0.3" />

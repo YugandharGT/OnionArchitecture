@@ -17,6 +17,7 @@ using OA.Concrete;
 using OA.Data.Context;
 using OA.Interface;
 using OA.Repo;
+using WebAPI.Memento;
 
 namespace WebAPI
 {
@@ -47,24 +48,43 @@ namespace WebAPI
         {
             //services.AddMemoryCache();
             //services.AddSession();
-
             
+            services.AddApplication();
+
             //Framework
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<CoreDbContext>(opt => opt.UseSqlServer(_config.GetConnectionString("CoreDbConnection"), options => options.EnableRetryOnFailure()));
 
+            
+
+            #region Swagger
             services.AddSwaggerGen(options =>
             {
-                
+                options.IncludeXmlComments(string.Format(@"{0}\WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory));
                 options.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Title = "SampleAPI - HTTP API",
                     Version = "v1",
                     Description = "Test HTTP API",
-                    
+
                 });
             });
+            #endregion
+
+
+            #region API Versioning
+            // Add API Versioning to the Project
+            services.AddApiVersioning(config =>
+            {
+                // Specify the default API Version as 1.0
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                // If the client hasn't specified the API version in the request, use the default API version number 
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                // Advertise the API versions supported for the particular endpoint
+                config.ReportApiVersions = true;
+            });
+            #endregion
             //DI
             services.AddTransient<IEmailRepository, EmailRepository>();
             services.AddScoped<IEmployeeTaskRepository, EmployeeTaskRepository>();
@@ -81,7 +101,7 @@ namespace WebAPI
             app.UseSwagger()
              .UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1");
             });
 
             //loggerFactory.AddFile("Logs/CoreApp_{Date}.txt");

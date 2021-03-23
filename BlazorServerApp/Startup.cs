@@ -53,6 +53,8 @@ namespace BlazorServerApp
             });
 
 
+
+
             //if (services.All(x => x.ServiceType != typeof(HttpClient)))
             //{
             //    services.AddScoped(

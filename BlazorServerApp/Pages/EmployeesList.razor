@@ -2,7 +2,7 @@
 @using Blazorise
 
 @page "/employeelist"
-@inherits EmployeeListBase
+@inherits EmployeeBase
 <style type="text/css">
     .alignHeader{
         text-align : center;
@@ -17,35 +17,59 @@ else
 
     <DataGrid TItem="Employee" Data="@Employees" Filterable="true" Editable="true" ShowPager="true" PageSize="3" Bordered="true" Hoverable="true" EditMode="DataGridEditMode.Popup" HeaderRowClass="alignHeader">
         <DataGridColumn TItem="Employee" Field="@nameof(Employee.Id)" Caption="ID" Width="120" TextAlignment="TextAlignment.Center"  Sortable="true"></DataGridColumn>
-        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Name)" Caption="Name" Width="200" TextAlignment="TextAlignment.Center"  Sortable="true" Editable="true"></DataGridColumn>
-        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Email)" Caption="Email" Width="200" TextAlignment="TextAlignment.Center"  Sortable="true" Editable="true"></DataGridColumn>
-        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Department)" Caption="Department" Width="200" TextAlignment="TextAlignment.Center"  Sortable="true" Editable="true"></DataGridColumn>
+        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Name)" Caption="Name" Width="200" TextAlignment="TextAlignment.Center" Sortable="true" Editable="true">
+        <DisplayTemplate>
+            @($"{( context as Employee ).Name}")
+        </DisplayTemplate>
+        <EditTemplate>
+            <TextEdit Text="@((string)(((CellEditContext)context).CellValue))" TextChanged="@( (v) => ((CellEditContext)context).CellValue = v)"/>
+        </EditTemplate>
+        </DataGridColumn>
+        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Email)" Caption="Email" Width="200" TextAlignment="TextAlignment.Center" Sortable="true" Editable="true">
+            @*<DisplayTemplate>
+            @($"{( context as Employee ).Email}")
+        </DisplayTemplate>
+        <EditTemplate>
+            <TextEdit Text="@((string)(((CellEditContext)context).CellValue))" TextChanged="@(v => ((CellEditContext)context).CellValue = v)" />
+        </EditTemplate>*@
+        </DataGridColumn>
+        <DataGridColumn TItem="Employee" Field="@nameof(Employee.Department)" Caption="Department" Width="200" TextAlignment="TextAlignment.Center" Sortable="true" Editable="true">
+            @*<DisplayTemplate>
+            @($"{( context as Employee ).Department}")
+        </DisplayTemplate>
+        <EditTemplate>
+            <TextEdit Text="@((string)(((CellEditContext)context).CellValue))" TextChanged="@(v => ((CellEditContext)context).CellValue = v)" />
+        </EditTemplate>*@
+        </DataGridColumn>
         <DataGridCommandColumn TItem="Employee" Width="200">
             <NewCommandTemplate>
-                <Button Color="Color.Primary">New</Button>
+                <Button Color="Color.Success" Clicked="@context.Clicked">New</Button>
             </NewCommandTemplate>
             <EditCommandTemplate>
-                <Button Color="Color.Secondary" Clicked="@ShowModal">Edit</Button>
+                <Button Color="Color.Primary" Clicked="@context.Clicked">Edit</Button>
             </EditCommandTemplate>
         </DataGridCommandColumn>
     </DataGrid>
 
-    <Modal @ref="modalRef">
+    <Modal @ref="modalRef" Closing="@OnModalClosing">
         <ModalContent IsCentered="true">
             <ModalHeader>
-                <ModalTitle>Employee Add/Edit</ModalTitle>
+                <ModalTitle>Add/Edit Employee</ModalTitle>
                 <CloseButton Clicked="@HideModal" />
             </ModalHeader>
             <ModalBody>
-                @*<Field>
-                    <TextEdit @bind-Value="@nameof(Employee.Name)" />
+                <Field>
+                    <FieldLabel>Name</FieldLabel>
+                    <TextEdit @bind-Value="@nameof(Employee.Name)" Placeholder="Enter name..."  />
                 </Field>
                 <Field>
-                    <TextEdit @bind-Value="@nameof(Employee.Email)" />
+                    <FieldLabel>Email</FieldLabel>
+                    <TextEdit @bind-Value="@nameof(Employee.Email)" Placeholder="Enter emailId"  />
                 </Field>
                 <Field>
-                    <TextEdit @bind-Value="@nameof(Employee.Department)" />
-                </Field>*@
+                    <FieldLabel>Department</FieldLabel>
+                    <TextEdit @bind-Value="@nameof(Employee.Department)" Placeholder="Enter department"  />
+                </Field>
             </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>

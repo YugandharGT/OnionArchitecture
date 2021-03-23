@@ -5,12 +5,13 @@ using Entities;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorServerApp.Pages
 {
-    public class EmployeeListBase : ComponentBase
+    public class EmployeeBase : ComponentBase
     {
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
@@ -65,6 +66,13 @@ namespace BlazorServerApp.Pages
         {
             modalRef.Hide();
         }
+
+        public void OnModalClosing(CancelEventArgs e)
+        {
+            // just set Cancel to true to prevent modal from closing
+            e.Cancel = true;
+        }
+
         public async void EditEmployee()
         {
             await EmployeeService.Edit();
