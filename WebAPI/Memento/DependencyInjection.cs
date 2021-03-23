@@ -11,7 +11,7 @@ namespace WebAPI.Memento
     /// <summary>
     /// 
     /// </summary>
-    public static class AddApplication
+    public static class DependencyInjection
     {
         /// <summary>
         /// 

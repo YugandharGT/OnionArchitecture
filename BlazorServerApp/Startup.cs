@@ -14,6 +14,7 @@ using System.Net.Http;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using MudBlazor.Services;
 
 namespace BlazorServerApp
 {
@@ -42,6 +43,7 @@ namespace BlazorServerApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddMudServices();
             services.AddSingleton<WeatherForecastService>();
 
             services.AddScoped<HttpClient>();
