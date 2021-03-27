@@ -20,10 +20,10 @@ else
     <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Summary)" Caption="Summary" Editable="true"></DataGridColumn>
     <DataGridCommandColumn  TItem="WeatherForecast">
         <NewCommandTemplate>
-            <Button Color="Color.Primary" Clicked="@context.Clicked">New</Button>
+            <Blazorise.Button Color="Blazorise.Color.Primary" Clicked="@context.Clicked">New</Blazorise.Button>
         </NewCommandTemplate>
         <EditCommandTemplate>
-            <Button Color="Color.Secondary" Clicked="@context.Clicked">Edit</Button>
+            <Blazorise.Button Color="Blazorise.Color.Secondary" Clicked="@context.Clicked">Edit</Blazorise.Button>
         </EditCommandTemplate>
     </DataGridCommandColumn>
 </DataGrid>
