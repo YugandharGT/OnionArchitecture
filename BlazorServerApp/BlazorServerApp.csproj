@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bootstrap-4.6.0\**" />
     <Compile Remove="Ecomm\**" />
+    <Content Remove="bootstrap-4.6.0\**" />
     <Content Remove="Ecomm\**" />
+    <EmbeddedResource Remove="bootstrap-4.6.0\**" />
     <EmbeddedResource Remove="Ecomm\**" />
+    <None Remove="bootstrap-4.6.0\**" />
     <None Remove="Ecomm\**" />
   </ItemGroup>
 
@@ -18,6 +22,10 @@
   <ItemGroup>
     <Content Remove="Pages\Employees.razor" />
     <Content Remove="Pages\EmployeesList.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
   </ItemGroup>
 
   <ItemGroup>

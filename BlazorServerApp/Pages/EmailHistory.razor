@@ -1,22 +1,50 @@
-﻿@*@inject HttpClient httpClient
+﻿@page "/emailhistory"
+@inherits EmailHistoryBase
 
-<MudTable Items="" MultiSelection="true" @bind-SelectedItems="" Hover="@hover">
-    <HeaderContent>
-        <MudTh><MudTableSortLabel SortBy="new Func<Element, object>(x=>x.Number)">From Email</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortBy="new Func<Element, object>(x=>x.Sign)">To Email</MudTableSortLabel></MudTh>
-        <MudTh>Subject</MudTh>
-        <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Element, object>(x=>x.Name)">Email Date</MudTableSortLabel></MudTh>
-        <MudTh>Status</MudTh>
-    </HeaderContent>
-    <RowTemplate>
-        <MudTd DataLabel="Nr">@context.Number</MudTd>
-        <MudTd DataLabel="Sign">@context.Sign</MudTd>
-        <MudTd DataLabel="Name">@context.Name</MudTd>
-        <MudTd DataLabel="Position">@context.Position</MudTd>
-        <MudTd DataLabel="Molar mass">@context.Molar</MudTd>
-    </RowTemplate>
-    <PagerContent>
-        <MudTablePager PageSizeOptions="new int[]{25, 50, 75, 100}" />
-    </PagerContent>
-</MudTable>
-<MudText Inline="true"></MudText>*@
+<div class="row">
+    <div class="offset-1 col-md-2">
+        <div class="card">
+            <div class="card-body">
+                <MudButton Variant="Variant.Outlined" Color="Color.Primary" @onclick="SubmitAll">Submit All</MudButton>
+            </div>
+        </div>
+    </div>
+    <div class="offset-1 col-md-5">
+        <div class="offset-1 col-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary" @onclick="SubmitAll">Submit All</MudButton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offset-1 col-md-2">
+        <div class="card">
+            <div class="card-body">
+                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" @onclick="ReleaseAll">Release All</MudButton>
+            </div>
+        </div>
+    </div>
+</div>
+@*@inject HttpClient httpClient
+
+    <MudTable Items="" MultiSelection="true" @bind-SelectedItems="" Hover="@hover">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel SortBy="new Func<Element, object>(x=>x.Number)">From Email</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Element, object>(x=>x.Sign)">To Email</MudTableSortLabel></MudTh>
+            <MudTh>Subject</MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Element, object>(x=>x.Name)">Email Date</MudTableSortLabel></MudTh>
+            <MudTh>Status</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Nr">@context.Number</MudTd>
+            <MudTd DataLabel="Sign">@context.Sign</MudTd>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Position">@context.Position</MudTd>
+            <MudTd DataLabel="Molar mass">@context.Molar</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[]{25, 50, 75, 100}" />
+        </PagerContent>
+    </MudTable>
+    <MudText Inline="true"></MudText>*@
