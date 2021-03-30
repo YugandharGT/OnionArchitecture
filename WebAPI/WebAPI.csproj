@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Validation\**" />
+    <Content Remove="Validation\**" />
+    <EmbeddedResource Remove="Validation\**" />
+    <None Remove="Validation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="WebAPI.xml" />
   </ItemGroup>
 
@@ -44,10 +51,6 @@
     <ProjectReference Include="..\Interface\OA.Interface.csproj" />
     <ProjectReference Include="..\OA.Data\OA.Data.csproj" />
     <ProjectReference Include="..\OA.Repo\OA.Repo.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Validation\" />
   </ItemGroup>
 
   <ItemGroup>

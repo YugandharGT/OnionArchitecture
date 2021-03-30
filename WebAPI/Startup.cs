@@ -1,10 +1,13 @@
 using System; 
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Entities;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +20,7 @@ using OA.Concrete;
 using OA.Data.Context;
 using OA.Interface;
 using OA.Repo;
+using WebAPI.Infrastructure;
 using WebAPI.Memento;
 
 namespace WebAPI
@@ -90,6 +94,7 @@ namespace WebAPI
             services.AddScoped<IEmployeeTaskRepository, EmployeeTaskRepository>();
             
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -98,6 +103,27 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //global error handling
+            app.ConfigureCustomExceptionMiddleware();
+            //overriding to get technical details
+            app.UseExceptionHandler(appError =>
+            {
+                appError.Run(async context =>
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    context.Response.ContentType = "application/json";
+                    var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+                    if (contextFeature != null)
+                    {
+                        //logger.LogError($"Something went wrong: {contextFeature.Error}");
+                        await context.Response.WriteAsync(new ErrorDetails()
+                        {
+                            StatusCode = context.Response.StatusCode,
+                            Message = "Internal Server Error."
+                        }.ToString());
+                    }
+                });
+            });
             app.UseSwagger()
              .UseSwaggerUI(s =>
             {

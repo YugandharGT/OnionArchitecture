@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace WebAPI.Memento
+namespace WebAPI.Infrastructure
 {
     /// <summary>
     /// 
@@ -19,9 +19,7 @@ namespace WebAPI.Memento
         /// <param name="services"></param>
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
-           
+            services.AddMediatR(Assembly.GetExecutingAssembly());          
         }
     }
 }
