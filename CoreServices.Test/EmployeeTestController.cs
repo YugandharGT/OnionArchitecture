@@ -43,16 +43,16 @@ namespace CoreServices.Test
             
             //Arrange
             var empController = new EmployeeController(repository);
-            int? postId = 1;
+            int postId = 1;
             //Act
-            var data = await empController.Index(postId);
+            var data = await empController.GetEmployeeById(postId);
             //Assert
             Assert.IsType<OkObjectResult>(data);
             var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
             var post = okResult.Value.Should().BeAssignableTo<Employee>().Subject;
 
-            Assert.Equal("CSHARP", post.Name);
-            Assert.Equal("csharp", post.Email);
+            Assert.Equal("Yugandhar", post.Name);
+            Assert.Equal("tyugandharyuvaraj@gmail.com", post.Email);
 
         }
 
@@ -62,7 +62,7 @@ namespace CoreServices.Test
             var empController = new EmployeeController(repository);
             var postId = 3;
             
-            var data = await empController.Index(postId);
+            var data = await empController.GetEmployeeById(postId);
             
             Assert.IsType<BadRequestResult>(data);
         }
@@ -71,14 +71,14 @@ namespace CoreServices.Test
         public async void Task_GetEmployeeById_InValidData_NotFoundResult()
         {
             var empController = new EmployeeController(repository);
-            int? postId = null;
+            int postId=0;
 
-            var data = await empController.Index(postId);
+            var data = await empController.GetEmployeeById(postId);
 
             Assert.IsType<NotFoundResult>(data);
         }
         #endregion
-        
+
         //#region Get All
         //[Fact]
         //public async void Task_GetAllEmployee_ValidData_OkResult()
@@ -100,23 +100,23 @@ namespace CoreServices.Test
         //#endregion
 
         //#region Post
-        //[Fact]
-        //public async void Task_PostEmployee_ValidData_OkResult()
-        //{
+        [Fact]
+        public async void Task_PostEmployee_ValidData_OkResult()
+        {
 
-        //}
+        }
 
-        //[Fact]
-        //public async void Task_PostEmployee_ValidData_BadResult()
-        //{
+        [Fact]
+        public async void Task_PostEmployee_ValidData_BadResult()
+        {
 
-        //}
+        }
 
-        //[Fact]
-        //public async void Task_PostEmployee_InValidData_NotFoundResult()
-        //{
+        [Fact]
+        public async void Task_PostEmployee_InValidData_NotFoundResult()
+        {
 
-        //}
+        }
         //#endregion
 
         //#region Put

@@ -36,15 +36,10 @@ namespace WebAPI.Controllers
        [Route("GetEmailHistory")]
        public async Task<IActionResult> GetEmailHistory()
        {
-            try
-            {
-               var result = await this.emailRepository.GetEmailTracksAsync();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+           
+            var result = await this.emailRepository.GetEmailTracksAsync();
+            return Ok(result);
+            
        }
         /// <summary>
         /// 
@@ -54,16 +49,9 @@ namespace WebAPI.Controllers
         [Route("GetFilteredEmails")]
         public IActionResult GetFilteredEmails(string emailFilter)
         {
-            try
-            {
-                //To handle client code request
-                EmailFilter customerJson = JsonConvert.DeserializeObject<EmailFilter>(emailFilter);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            //To handle client code request
+            EmailFilter customerJson = JsonConvert.DeserializeObject<EmailFilter>(emailFilter);
+            return Ok();
         }
     }
 }

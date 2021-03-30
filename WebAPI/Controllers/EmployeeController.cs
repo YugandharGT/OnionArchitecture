@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/v{version:apiVersion}/Employee")]
+    [Route("api/Employee")]
     [ApiVersion("1.0")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -137,23 +137,23 @@ namespace WebAPI.Controllers
         [Route("UpdateEmployee/{id:int}")]
         public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody] Employee value)
         {
-            try
-            {
+            //try
+            //{
                 var empToUpdate = await employeeRepo.GetByIdAsync(id);
-                if (empToUpdate == null)
-                {
-                    return NotFound($"Employee with Id = {id} not found");
-                }
+                //if (empToUpdate == null)
+                //{
+                //    return NotFound($"Employee with Id = {id} not found");
+                //}
                 return await employeeRepo.UpdateAsync(value);
-            }
-            catch (Exception ex)
-            {
-                if (ex.GetType().FullName == "Microsoft.EntityFrameworkCore.DbConcurrencyException")
-                {
-                    return NotFound();
-                }
-                return BadRequest();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (ex.GetType().FullName == "Microsoft.EntityFrameworkCore.DbConcurrencyException")
+            //    {
+            //        return NotFound();
+            //    }
+            //    return BadRequest();
+            //}
         }
 
         /// <summary>

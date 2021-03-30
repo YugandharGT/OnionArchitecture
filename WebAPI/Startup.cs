@@ -21,7 +21,7 @@ using OA.Data.Context;
 using OA.Interface;
 using OA.Repo;
 using WebAPI.Infrastructure;
-using WebAPI.Memento;
+
 
 namespace WebAPI
 {
@@ -30,14 +30,17 @@ namespace WebAPI
     /// </summary>
     public class Startup
     {
-        IConfiguration _config;
+        readonly IConfiguration _config;
+        private readonly ILogger _logger = null;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="config"></param>
-        public Startup(IConfiguration config)
+        /// <param name="logger"></param>
+        public Startup(IConfiguration config, ILogger<Startup> logger)
         {
             _config = config;
+            _logger = logger;
         }
         /// <summary>
         /// 
@@ -52,7 +55,13 @@ namespace WebAPI
         {
             //services.AddMemoryCache();
             //services.AddSession();
-            
+
+            //Register Logging
+            var serviceProvider = services.BuildServiceProvider();
+            var logger = serviceProvider.GetService<ILogger<Startup>>();
+            services.AddSingleton(typeof(ILogger), logger);
+
+            //Register all Repository implementation
             services.AddApplication();
 
             //Framework
@@ -105,7 +114,7 @@ namespace WebAPI
         {
             //global error handling
             app.ConfigureCustomExceptionMiddleware();
-            //overriding to get technical details
+            ////overriding to get technical details
             app.UseExceptionHandler(appError =>
             {
                 appError.Run(async context =>
@@ -115,7 +124,7 @@ namespace WebAPI
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
                     if (contextFeature != null)
                     {
-                        //logger.LogError($"Something went wrong: {contextFeature.Error}");
+                        _logger.LogError($"Something went wrong: {contextFeature.Error}");
                         await context.Response.WriteAsync(new ErrorDetails()
                         {
                             StatusCode = context.Response.StatusCode,

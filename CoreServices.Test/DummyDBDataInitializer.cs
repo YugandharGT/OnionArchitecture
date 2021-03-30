@@ -18,14 +18,12 @@ namespace CoreServices.Test
         {
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
-            
-            context.employees.AddRange(
-                new Employee() { Name = "CSHARP", Email = "csharp", Department="Programming" },
-                new Employee() { Name = "VISUAL STUDIO", Email = "visualstudio", Department = "Software" },
-                new Employee() { Name = "ASP.NET CORE", Email = "aspnetcore", Department = "Framework" },
-                new Employee() { Name = "SQL SERVER", Email = "sqlserver", Department = "Database" }
-            );
 
+            context.Employees.AddRange(
+                new Employee() { Name = "Yugandhar", Email = "tyugandharyuvaraj@gmail.com", Department="IT" },
+                new Employee() { Name = "Rajesh", Email = "Rajesh@147@gmail.com", Department = "Testing" },
+                new Employee() { Name = "AjithKumar", Email = "ajithkumar958@gmail.com", Department = "Media&Telecomunnication" }
+            );
             context.SaveChanges();
         }
     }
