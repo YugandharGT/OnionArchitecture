@@ -43,7 +43,9 @@ namespace BlazorServerApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
             services.AddMudServices();
+
             services.AddSingleton<WeatherForecastService>();
 
             services.AddScoped<HttpClient>();
