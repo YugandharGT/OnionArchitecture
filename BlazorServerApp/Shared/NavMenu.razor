@@ -1,28 +1,23 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿<div class="navbar navbar-expand-md navbar-light bg-light">
     <a class="navbar-brand" href="">BlazorServerAppDemo</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+    @*@onclick="ToggleNavMenu"*@
+    <button type="button" class="navbar-toggler" data-toggle="collapse">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
+@*@NavMenuCssClass, @onclick="ToggleNavMenu"*@
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav nav">
+        <MudNavMenu>
+            <MudNavLink Icon="@Icons.Filled.AccessTime" Href="/counter">Counter</MudNavLink>
+            <MudNavLink Icon="@Icons.Material.Outlined.Email" Href="/emailhistory">Manage Emails</MudNavLink>
+            <MudNavGroup Title="Settings" Icon="@Icons.Filled.Settings" Expanded="true">
+                <MudNavLink Href="/users">Users</MudNavLink>
+                <MudNavLink Href="/security">Security</MudNavLink>
+            </MudNavGroup>
+            <MudNavLink Href="/about" Icon="@Icons.Filled.BrightnessMedium" Disabled="true">About</MudNavLink>
+        </MudNavMenu>
+    </div>
 </div>
 
 @code {

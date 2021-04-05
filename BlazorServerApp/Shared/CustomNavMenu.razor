@@ -1,1 +1,49 @@
-﻿
+﻿    <MudNavMenu>
+        <MudText Typo="Typo.h6" Class="">Blazor Sever App</MudText>
+        <MudText Typo="Typo.body2" Class="mud-text-secondary">Yugandhar T</MudText>
+        <MudDivider Class="my-2" />
+        <MudNavLink Icon="@Icons.Filled.AccessTime" Href="/counter">Counter</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Outlined.Assignment" Href="/fetchdata">FetchData</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Outlined.Email" Href="/emailhistory">Manage Emails</MudNavLink>
+        <MudNavGroup Title="Settings" Icon="@Icons.Filled.Settings" Expanded="true">
+            <MudNavLink Href="/users">Users</MudNavLink>
+            <MudNavLink Href="/security">Security</MudNavLink>
+        </MudNavGroup>
+        <MudNavLink Href="/about" Icon="@Icons.Filled.BrightnessMedium" Disabled="true">About</MudNavLink>
+    </MudNavMenu>
+
+@*@code{
+        MudTheme currentTheme = new MudTheme();
+        MudTheme defaultTheme = new MudTheme();
+
+        MudBlazorCustomTheme customTheme = new MudBlazorCustomTheme();
+
+        //private ThemeManagerTheme _themeManager = new ThemeManagerTheme();
+
+        protected override void OnInitialized()
+        {
+            currentTheme = defaultTheme;
+        }
+
+        private bool darkMode;
+        public bool DarkMode
+        {
+            get
+            {
+                return darkMode;
+            }
+            set
+            {
+                if (currentTheme == defaultTheme)
+                {
+                    currentTheme = customTheme.GetDarkMode();
+                    darkMode = true;
+                }
+                else
+                {
+                    currentTheme = customTheme.GetLightMode();
+                    darkMode = false;
+                }
+            }
+        }
+    }*@
