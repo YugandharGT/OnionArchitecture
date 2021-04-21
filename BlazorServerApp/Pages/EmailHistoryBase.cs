@@ -8,6 +8,15 @@ namespace BlazorServerApp.Pages
 {
     public class EmailHistoryBase : ComponentBase
     {
+        [Parameter]
+        public string EmailId { get; set; }
+        [Parameter]
+        public DateTime? FromDate { get; set; }
+        [Parameter]
+        public DateTime? ToDate { get; set; }
+        [Parameter]
+        public string SelectedOption { get; set; }
+
         public void SubmitAll()
         {
 

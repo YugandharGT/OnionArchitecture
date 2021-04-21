@@ -8,43 +8,44 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Eshop - eCommerce HTML5 Template.</title>
-    <base href="~/" />
-    <meta http-equiv="Cache-Control" content="no-store" />
-    <link href="~/css/site.css" rel="stylesheet" />
 
-    @*<link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
-    <link href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" rel="stylesheet" />*@
-    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta name="keywords" content="admin template, mudblazor, blazor, component, material design">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MudBlazor Admin Dashboard">
+    <meta property="og:url" content="https://mudblazor.com/">
+    <meta property="og:site_name" content="MudBlazor">
+    <meta property="og:description" content="MIT-licensed MudBlazor Admin Dashboard Template">
+    <meta property="og:image" content="images/AdminDashboardTemplate.png">
+
+    <base href="~/" />
+    @*<link href="~/css/site.css" rel="stylesheet" />*@
+    <link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
+    <link href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/SamProf/MatBlazor/master/content/favicon-32x32.png">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     
-    @*<link href="_content/MudBlazor/MudBlazor.min.css?v=5.0.5" rel="stylesheet" />*@
+    <link href="_content/MatBlazor/dist/matBlazor.css" rel="stylesheet" />
+    @*<link href="_content/MudBlazor/MudBlazor.min.css?v=5.0.5" rel="stylesheet"/>*@
 
 </head>
-<body>
+<body class="mat">
 
 
-    <app>
+    <app style="display: flex;">
         <component type="typeof(App)" render-mode="ServerPrerendered" />
     </app>
 
-    <div id="blazor-error-ui">
-        <environment include="Staging,Production">
-            An error has occurred. This application may no longer respond until reloaded.
-        </environment>
-        <environment include="Development">
-            An unhandled exception has occurred. See browser dev tools for details.
-        </environment>
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
 
     <script src="_framework/blazor.server.js"></script>
 
-
-    @*<script src="_content/Blazorise/blazorise.js"></script>
-    <script src="_content/Blazorise.Bootstrap/blazorise.bootstrap.js"></script>*@
-    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
-    @*<script src="_content/MudBlazor/MudBlazor.min.js?v=5.0.5"></script>*@
+    <script src="_content/Blazorise/blazorise.js"></script>
+    <script src="_content/Blazorise.Bootstrap/blazorise.bootstrap.js"></script>
+    <script src="_content/MatBlazor/dist/matBlazor.js"></script>
+  
+    @*<script src="_content/MudBlazor/MudBlazor.min.js"></script>
+        <script src="_content/MudBlazor/MudBlazor.min.js?v=5.0.5"></script>*@
 
 </body>
 </html>
