@@ -1,32 +1,20 @@
-﻿<div class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand">BlazorServerAppDemo</a>
-    @*@onclick="ToggleNavMenu"*@
-    <button type="button" class="navbar-toggler" data-toggle="collapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
-@*@NavMenuCssClass, @onclick="ToggleNavMenu"*@
-<div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav nav">
-        <MudNavMenu>
-            <MudNavLink Icon="@Icons.Filled.AccessTime" Href="/counter">Counter</MudNavLink>
-            <MudNavLink Icon="@Icons.Material.Outlined.Email" Href="/emailhistory">Manage Emails</MudNavLink>
-            <MudNavGroup Title="Settings" Icon="@Icons.Filled.Settings" Expanded="true">
-                <MudNavLink Href="/users">Users</MudNavLink>
-                <MudNavLink Href="/security">Security</MudNavLink>
-            </MudNavGroup>
-            <MudNavLink Href="/about" Icon="@Icons.Filled.BrightnessMedium" Disabled="true">About</MudNavLink>
-        </MudNavMenu>
-    </div>
-</div>
+﻿    <MudNavMenu>
+        <MudNavLink Icon="@Icons.Filled.AccessTime" Href="/counter">Counter</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Outlined.Email" Href="/emailhistory">Manage Emails</MudNavLink>
+        <MudNavGroup Title="Settings" Icon="@Icons.Filled.Settings" Expanded="true">
+            <MudNavLink Href="/users">Users</MudNavLink>
+            <MudNavLink Href="/login">Security</MudNavLink>
+        </MudNavGroup>
+        <MudNavLink Href="/about" Icon="@Icons.Filled.BrightnessMedium" Disabled="true">About</MudNavLink>
+    </MudNavMenu>
 
 @code {
-    private bool collapseNavMenu = true;
+    //private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    //private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+    //private void ToggleNavMenu()
+    //{
+    //    collapseNavMenu = !collapseNavMenu;
+    //}
 }
