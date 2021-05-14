@@ -1,32 +1,41 @@
 ﻿@page "/emailhistory"
 @inherits EmailHistoryBase
+    <style type="text/css">
+        .content-center {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .card-margin {
+            padding-top:50px;
+        }
+    </style>
+    <MudGrid>
+        @*xs="12" sm="6"*@
+        <MudItem md="4" lg="4" Style="padding-top:30px;">
 
-<MudGrid>
-
-        <MudItem xs="12" sm="6" md="4">
-
-            <MudCard>
+            <MudCard Elevation="12" Class="mx-5">
                 <MudCardContent>
-                    <MudText>Submit</MudText>
+                    <MudText Class="content-center">Submit</MudText>
                 </MudCardContent>
-                <MudCardActions>
+                <MudCardActions Class="content-center">
                     <MudButton Variant="Variant.Outlined" Color="Color.Primary" @onclick="SubmitAll">Submit All</MudButton>
                 </MudCardActions>
             </MudCard>
         </MudItem>
 
-        <MudItem xs="12" sm="6" md="4">
-            <MudCard>
+        <MudItem md="4" lg="4" Style="padding-top:30px;">
+            <MudCard  Elevation="12">
                 <MudCardContent>
                     <MudText Typo="Typo.body2">Email History</MudText>
                     <MudItem>
-                        <MudTextField @bind-Value="EmailId" Label="EmalId" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Search" AdornmentColor="Color.Secondary" />
+                        <MudTextField @bind-Value="EmailId" Label="EmalId" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Search" AdornmentColor="Color.Primary" />
                     </MudItem>
                     <MudItem>
-                        <MudDatePicker Label="From Date" @bind-StartDate="FromDate" DateFormat="dd/MM/yyyy"  Editable="true"  />
+                        <MudDatePicker Label="From Date" @bind-StartDate="FromDate" DateFormat="dd/MM/yyyy" Editable="true" />
                     </MudItem>
                     <MudItem>
-                        <MudDatePicker Label="To Date" @bind-StartDate="ToDate" DateFormat="dd/MM/yyyy"  Editable="true"  />
+                        <MudDatePicker Label="To Date" @bind-StartDate="ToDate" DateFormat="dd/MM/yyyy" Editable="true" />
                     </MudItem>
                     <MudRadioGroup @bind-SelectedOption="@SelectedOption">
                         <MudRadio Option="@("Submitted")" Color="Color.Primary">Submitted</MudRadio>
@@ -34,18 +43,18 @@
                         <MudRadio Option="@("All")">All</MudRadio>
                     </MudRadioGroup>
                 </MudCardContent>
-                <MudCardActions>
-                    <MudButton Variant="Variant.Text" Color="Color.Primary">Search</MudButton>
+                <MudCardActions Class="content-center">
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary">Search</MudButton>
                 </MudCardActions>
             </MudCard>
         </MudItem>
 
-        <MudItem xs="12" sm="6" md="4">
-            <MudCard>
+        <MudItem md="4" lg="4" Style="padding-top:30px;">
+            <MudCard  Elevation="12"  Class="mx-5">
                 <MudCardContent>
-                    <MudText>Approve</MudText>
+                    <MudText Class="content-center">Approve</MudText>
                 </MudCardContent>
-                <MudCardActions>
+                <MudCardActions Class="content-center">
                     <MudButton Variant="Variant.Outlined" Color="Color.Secondary" @onclick="ReleaseAll">Release All</MudButton>
                 </MudCardActions>
             </MudCard>
@@ -54,38 +63,6 @@
 
     </MudGrid>
 
-
-
-
-
-
-
-
-@*<div class="row">
-        <div class="offset-1 col-md-2">
-            <div class="card">
-                <div class="card-body">
-
-                </div>
-            </div>
-        </div>
-        <div class="offset-1 col-md-5">
-            <div class="offset-1 col-md-2">
-                <div class="card">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="offset-1 col-md-2">
-            <div class="card">
-                <div class="card-body">
-
-                </div>
-            </div>
-        </div>
-    </div>*@
 @*@inject HttpClient httpClient
 
     <MudTable Items="" MultiSelection="true" @bind-SelectedItems="" Hover="@hover">

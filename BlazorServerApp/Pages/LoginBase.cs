@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,26 @@ namespace BlazorServerApp.Pages
         [Parameter]
         public bool RememberMe { get; set; } = true;
 
-        public void SignIn()
+        bool isShow;
+
+        public InputType PasswordInput = InputType.Password;
+        public string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        public void ButtonTestclick()
         {
-            //NavigationManager navigation = new ;
+            if (isShow)
+            {
+                isShow = false;
+                PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                PasswordInput = InputType.Password;
+            }
+            else
+            {
+                isShow = true;
+                PasswordInputIcon = Icons.Material.Filled.Visibility;
+                PasswordInput = InputType.Text;
+            }
         }
     }
 }
+

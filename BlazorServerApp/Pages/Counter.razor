@@ -1,16 +1,14 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-16">
+    <MudText Typo="Typo.h3" GutterBottom="true">Counter</MudText>
+    <MudText Class="mb-4">Current count: @currentCount</MudText>
+    <MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="IncrementCount">Click me</MudButton>
+</MudContainer>
 
-<p>Current count: @currentCount</p>
+@code { private int currentCount = 0;
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    int currentCount = 0;
-
-    void IncrementCount()
+    private void IncrementCount()
     {
         currentCount++;
-    }
-}
+    } }

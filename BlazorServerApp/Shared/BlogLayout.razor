@@ -1,6 +1,21 @@
 ﻿@inherits LayoutComponentBase
-
+@inject NavigationManager navManager
     <MudThemeProvider />
+@if (navManager.Uri.Equals(navManager.BaseUri, StringComparison.OrdinalIgnoreCase) 
+    || navManager.Uri.Contains("Register", StringComparison.OrdinalIgnoreCase)
+    || navManager.Uri.Contains("Forgot", StringComparison.OrdinalIgnoreCase)
+    || navManager.Uri.Contains("Reset", StringComparison.OrdinalIgnoreCase)
+    )
+{
+    <MudLayout>
+        <MudMainContent>
+            @Body
+        </MudMainContent>
+    </MudLayout>
+}
+else
+{
+    
     <MudDialogProvider />
     <MudSnackbarProvider />
     <MudLayout>
@@ -17,16 +32,16 @@
         <MudMainContent>
             @Body
         </MudMainContent>
-
-
     </MudLayout>
+}
 
-    @code {
-        bool _drawerOpen = true;
 
-        void DrawerToggle()
-        {
-            _drawerOpen = !_drawerOpen;
-        }
+@code {
+    bool _drawerOpen = true;
 
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
     }
+
+}

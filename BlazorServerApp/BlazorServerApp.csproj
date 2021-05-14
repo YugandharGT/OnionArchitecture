@@ -2,16 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="bootstrap-4.6.0\**" />
+    <Compile Remove="DynamicEvents\**" />
     <Compile Remove="Ecomm\**" />
     <Content Remove="bootstrap-4.6.0\**" />
+    <Content Remove="DynamicEvents\**" />
     <Content Remove="Ecomm\**" />
     <EmbeddedResource Remove="bootstrap-4.6.0\**" />
+    <EmbeddedResource Remove="DynamicEvents\**" />
     <EmbeddedResource Remove="Ecomm\**" />
     <None Remove="bootstrap-4.6.0\**" />
+    <None Remove="DynamicEvents\**" />
     <None Remove="Ecomm\**" />
   </ItemGroup>
 
@@ -22,11 +27,9 @@
   <ItemGroup>
     <Content Remove="Pages\Employees.razor" />
     <Content Remove="Pages\EmployeesList.razor" />
-    <Content Remove="Shared\EmptyLayout.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Shared\EmptyLayout.razor" />
     <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
   </ItemGroup>
 
@@ -44,14 +47,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Shared\EmptyLayout.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Shared\EmptyLayout.razor" />
   </ItemGroup>
 
 </Project>

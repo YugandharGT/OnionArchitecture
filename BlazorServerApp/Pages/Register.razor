@@ -1,5 +1,98 @@
-﻿<h3>Register</h3>
+﻿@page "/Register"
+@inherits RegisterBase
+@inject NavigationManager UriHelper
 
+<style type="text/css">
+    .content-center {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+</style>
+<MudHidden Breakpoint="Breakpoint.SmAndUp" Invert="true">
+    <MudCard Elevation="12" Class="my-4" Style="width:400px;margin:0 auto;">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudGrid>
+                    <MudItem md="12" sm="12" lg="12" Class="my-0">
+                        <MudText Class="content-center" Typo="Typo.body2">SignUp for your account</MudText>
+                    </MudItem>
+                </MudGrid>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem md="12" sm="12" lg="12" Class="my-1">
+                    <MudTextField @bind-Value="EmailAddress" Label="EmailAddress" InputType="InputType.Text" Variant="Variant.Outlined" />
+                </MudItem>
+                <MudItem md="12" sm="12" lg="12" Class="my-1">
+                    <MudTextField @bind-Value="UserName" Label="Username" InputType="InputType.Text" Variant="Variant.Outlined" />
+                </MudItem>
+                <MudItem md="12" sm="12" lg="12" Class="my-1">
+                    <MudTextField @bind-Value="Password" Label="Password" InputType="@PasswordInput" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" />
+                </MudItem>
+            </MudGrid>
+        </MudCardContent>
+        <MudCardActions>
+            <MudGrid>
+                <MudItem md="12" sm="12" lg="12" Class="content-center my-1">
+                    <MudButton Class="" Size="Size.Large" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary">Sign Up</MudButton>
+                </MudItem>
+                <MudItem xs="12" Class="content-center"> OR </MudItem>
+                <MudItem md="12" sm="12" lg="12" Class="content-center my-1">
+                    <MudIcon Icon="@Icons.Custom.Brands.Microsoft" Title="Microsoft Authentication" />
+                    <MudButton Size="Size.Large" Variant="Variant.Filled" Color="Color.Default">Continue with Microsoft</MudButton>
+                </MudItem>
+                <MudItem md="12" sm="12" lg="12" Class="my-1">
+                    <MudLink Href="/" Class="content-center" Typo="Typo.body2">Already have an Account? Login</MudLink>
+                </MudItem>
+            </MudGrid>
+        </MudCardActions>
+    </MudCard>
+</MudHidden>
+<MudHidden Breakpoint="Breakpoint.Xs" Invert="true">
+    <MudCard Elevation="12" Class="my-4" Style="width:auto;margin:0 auto;">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudGrid>
+                    <MudItem xs="12" Class="my-0">
+                        <MudText Class="content-center" Typo="Typo.body2">SignUp for your account</MudText>
+                    </MudItem>
+                </MudGrid>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem xs="12" Class="my-1">
+                    <MudTextField @bind-Value="EmailAddress" Label="EmailAddress" InputType="InputType.Text" Variant="Variant.Outlined" />
+                </MudItem>
+                <MudItem xs="12" Class="my-1">
+                    <MudTextField @bind-Value="UserName" Label="Username" InputType="InputType.Text" Variant="Variant.Outlined" />
+                </MudItem>
+                <MudItem xs="12" Class="my-1">
+                    <MudTextField @bind-Value="Password" Label="Password" InputType="@PasswordInput" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" />
+                </MudItem>
+            </MudGrid>
+        </MudCardContent>
+        <MudCardActions>
+            <MudGrid>
+                <MudItem xs="12" Class="content-center my-1">
+                    <MudButton Class="" Size="Size.Large" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary">Sign Up</MudButton>
+                </MudItem>
+                <MudItem xs="12" Class="content-center"> OR </MudItem>
+                <MudItem xs="12" Class="content-center my-2">
+                    <MudIcon Icon="@Icons.Custom.Brands.Microsoft" Title="Microsoft Authentication" />
+                    <MudButton Size="Size.Large" Variant="Variant.Filled" Color="Color.Default">Continue with Microsoft</MudButton>
+                </MudItem>
+                <MudItem xs="12" Class="my-1">
+                    <MudLink Href="/" Class="content-center" Typo="Typo.body2">Already have an Account? Login</MudLink>
+                </MudItem>
+            </MudGrid>
+        </MudCardActions>
+    </MudCard>
+</MudHidden>
 @code {
+    
 
 }
+

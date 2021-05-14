@@ -1,6 +1,6 @@
 ﻿@page "/"
-@*@page"/ogin"*@
 @inherits LoginBase
+@inject NavigationManager UriHelper
 
 <style type="text/css">
     .content-center {
@@ -9,25 +9,20 @@
         display: flex;
     }
 
-    .content-padding {
-    }
-
-    .content-margin {
-    }
 </style>
 <MudHidden Breakpoint="Breakpoint.SmAndUp" Invert="true">
-    <MudCard Elevation="3" Class="my-4" Style="width:650px;margin:0 auto;">
+    <MudCard Elevation="12" Class="my-4" Style="width:650px;margin:0 auto;">
         <MudCardHeader>
             <CardHeaderAvatar>
                 <MudAvatar Image="_content/MudBlazor.Docs/41a.jpg" Size="Size.Large" />
             </CardHeaderAvatar>
             <CardHeaderContent>
                 <MudGrid>
-                    <MudItem md="12">
+                    <MudItem md="12" sm="12" lg="12">
                         <MudText Class="my-3 content-center" Typo="Typo.h3">Sign In</MudText>
                         <MudText Class="my-3 content-center" Typo="Typo.body2">Login with your credentials</MudText>
                     </MudItem>
-                    <MudItem md="12" Class="my-0">
+                    <MudItem md="12" sm="12" lg="12" Class="my-0">
                         <MudText Class="content-center" Typo="Typo.body2">
                             Don't have an account?<MudLink Href="/Register" Typo="Typo.body2">Register here</MudLink>
                         </MudText>
@@ -37,13 +32,13 @@
         </MudCardHeader>
         <MudCardContent>
             <MudTextField Class="my-2" @bind-Value="UserName" Label="Username" InputType="InputType.Text" Variant="Variant.Outlined" />
-            <MudTextField Class="my-2" @bind-Value="Password" Label="Password" InputType="InputType.Password" Variant="Variant.Outlined" />
+            <MudTextField Class="my-2" @bind-Value="Password" Label="Password" InputType="@PasswordInput" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick"  />
             <MudGrid Class="my-2">
                 <MudItem md="9">
                     <MudCheckBox @bind-Checked="RememberMe" Label="Remember Me" Color="Color.Primary"></MudCheckBox>
                 </MudItem>
                 <MudItem md="3">
-                    <MudLink Href="/Register" Typo="Typo.body2" Class="pr-0">Forgot password?</MudLink>
+                    <MudLink Href="/forgotpassword" Typo="Typo.body2" Class="pr-0">Forgot password?</MudLink>
                 </MudItem>
             </MudGrid>
         </MudCardContent>
@@ -52,7 +47,48 @@
         </MudCardActions>
     </MudCard>
 </MudHidden>
-@code {
+<MudHidden Breakpoint="Breakpoint.Xs" Invert="true">
+    <MudCard Elevation="12" Class="my-4" Style="width:auto; margin:0 auto;">
+        <MudCardHeader>
+            <CardHeaderAvatar>
+                <MudAvatar Image="_content/MudBlazor.Docs/41a.jpg" Size="Size.Large" />
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudGrid>
+                    <MudItem xs="12">
+                        <MudText Class="my-3 content-center" Typo="Typo.h3">Sign In</MudText>
+                        <MudText Class="my-3 content-center" Typo="Typo.body2">Login with your credentials</MudText>
+                    </MudItem>
+                    <MudItem xs="12" Class="my-0">
+                        <MudText Class="content-center" Typo="Typo.body2">
+                            Don't have an account?<MudLink Href="/Register" Typo="Typo.body2">Register here</MudLink>
+                        </MudText>
+                    </MudItem>
+                </MudGrid>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudTextField Class="my-2" @bind-Value="UserName" Label="Username" InputType="InputType.Text" Variant="Variant.Outlined" />
+            <MudTextField Class="my-2" @bind-Value="Password" Label="Password" InputType="@PasswordInput" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick"  />
+            <MudGrid Class="my-2">
+                <MudItem xs="6">
+                    <MudCheckBox @bind-Checked="RememberMe" Label="Remember Me" Color="Color.Primary"></MudCheckBox>
+                </MudItem>
+                <MudItem xs="6" Class="mt-2">
+                    <MudLink Href="/forgotpassword" Typo="Typo.body2" Class="pr-0">Forgot password?</MudLink>
+                </MudItem>
+            </MudGrid>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Class="ma-2" Size="Size.Large" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" OnClick="SignIn">SIGN IN</MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudHidden>
 
+    @code {
 
-}
+        public void SignIn()
+        {
+            UriHelper.NavigateTo("/counter");
+        }
+    }
