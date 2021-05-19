@@ -1,7 +1,9 @@
-﻿@inherits LayoutComponentBase
+﻿@*@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider*@
+@inherits LayoutComponentBase
 @inject NavigationManager navManager
-    <MudThemeProvider />
-@if (navManager.Uri.Equals(navManager.BaseUri, StringComparison.OrdinalIgnoreCase) 
+<MudThemeProvider />
+@if (navManager.Uri.Equals(navManager.BaseUri, StringComparison.OrdinalIgnoreCase)
     || navManager.Uri.Contains("Register", StringComparison.OrdinalIgnoreCase)
     || navManager.Uri.Contains("Forgot", StringComparison.OrdinalIgnoreCase)
     || navManager.Uri.Contains("Reset", StringComparison.OrdinalIgnoreCase)
@@ -15,7 +17,7 @@
 }
 else
 {
-    
+
     <MudDialogProvider />
     <MudSnackbarProvider />
     <MudLayout>
@@ -35,7 +37,6 @@ else
     </MudLayout>
 }
 
-
 @code {
     bool _drawerOpen = true;
 
@@ -43,5 +44,4 @@ else
     {
         _drawerOpen = !_drawerOpen;
     }
-
 }

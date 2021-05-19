@@ -1,4 +1,4 @@
-﻿using Entities.Shared;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace WebAPI.Queries
     /// <summary>
     /// This implements Querying responsibility of CQRS pattern
     /// </summary>
-    public class GetAllEmailsHistory : IRequest<PaginatedResult<GetAllEmailsResponse>> 
+    public class GetAllEmailsHistory
     {
     }
 }

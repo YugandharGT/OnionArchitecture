@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using WebAPI.Contracts;
 
 namespace WebAPI.Models
 {
     /// <summary>
     /// It represents login user attributes
     /// </summary>
-    public class User
+    public class ApplicationUser : IdentityUser<Guid>
     {
         public string FirstName { get; set; }
 
