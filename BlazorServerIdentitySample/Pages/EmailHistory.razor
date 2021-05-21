@@ -1,0 +1,87 @@
+﻿@page "/emailhistory"
+@inherits EmailHistoryBase
+    <style type="text/css">
+        .content-center {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .card-margin {
+            padding-top:50px;
+        }
+    </style>
+    <MudGrid>
+        @*xs="12" sm="6"*@
+        <MudItem md="4" lg="4" Style="padding-top:30px;">
+
+            <MudCard Elevation="12" Class="mx-5">
+                <MudCardContent>
+                    <MudText Class="content-center">Submit</MudText>
+                </MudCardContent>
+                <MudCardActions Class="content-center">
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary" @onclick="SubmitAll">Submit All</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+
+        <MudItem md="4" lg="4" Style="padding-top:30px;">
+            <MudCard  Elevation="12">
+                <MudCardContent>
+                    <MudText Typo="Typo.body2">Email History</MudText>
+                    <MudItem>
+                        <MudTextField @bind-Value="EmailId" Label="EmalId" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Search" AdornmentColor="Color.Primary" />
+                    </MudItem>
+                    <MudItem>
+                        <MudDatePicker Label="From Date" @bind-StartDate="FromDate" DateFormat="dd/MM/yyyy" Editable="true" />
+                    </MudItem>
+                    <MudItem>
+                        <MudDatePicker Label="To Date" @bind-StartDate="ToDate" DateFormat="dd/MM/yyyy" Editable="true" />
+                    </MudItem>
+                    <MudRadioGroup @bind-SelectedOption="@SelectedOption">
+                        <MudRadio Option="@("Submitted")" Color="Color.Primary">Submitted</MudRadio>
+                        <MudRadio Option="@("Released")" Color="Color.Secondary">Released</MudRadio>
+                        <MudRadio Option="@("All")">All</MudRadio>
+                    </MudRadioGroup>
+                </MudCardContent>
+                <MudCardActions Class="content-center">
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary">Search</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+
+        <MudItem md="4" lg="4" Style="padding-top:30px;">
+            <MudCard  Elevation="12"  Class="mx-5">
+                <MudCardContent>
+                    <MudText Class="content-center">Approve</MudText>
+                </MudCardContent>
+                <MudCardActions Class="content-center">
+                    <MudButton Variant="Variant.Outlined" Color="Color.Secondary" @onclick="ReleaseAll">Release All</MudButton>
+                </MudCardActions>
+            </MudCard>
+
+        </MudItem>
+
+    </MudGrid>
+
+@*@inject HttpClient httpClient
+
+    <MudTable Items="" MultiSelection="true" @bind-SelectedItems="" Hover="@hover">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel SortBy="new Func<Element, object>(x=>x.Number)">From Email</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Element, object>(x=>x.Sign)">To Email</MudTableSortLabel></MudTh>
+            <MudTh>Subject</MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Element, object>(x=>x.Name)">Email Date</MudTableSortLabel></MudTh>
+            <MudTh>Status</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Nr">@context.Number</MudTd>
+            <MudTd DataLabel="Sign">@context.Sign</MudTd>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Position">@context.Position</MudTd>
+            <MudTd DataLabel="Molar mass">@context.Molar</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[]{25, 50, 75, 100}" />
+        </PagerContent>
+    </MudTable>
+    <MudText Inline="true"></MudText>*@

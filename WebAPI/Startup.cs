@@ -54,13 +54,18 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMemoryCache();
-            //services.AddSession();
 
             //Register Logging
             var serviceProvider = services.BuildServiceProvider();
             var logger = serviceProvider.GetService<ILogger<Startup>>();
             services.AddSingleton(typeof(ILogger), logger);
+
+            //Framework
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<CoreDbContext>(opt =>
+            opt.UseSqlServer(_config.GetConnectionString("CoreDbConnection"), options => options.EnableRetryOnFailure())
+            );
 
             //Register all Repository implementation
             services.AddApplication();
@@ -104,12 +109,7 @@ namespace WebAPI
                 options.AddPolicy("RequireAdmin", c => c.RequireRole("Admin"));
             });
 
-            //Framework
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddDbContext<CoreDbContext>(opt => 
-            opt.UseSqlServer(_config.GetConnectionString("CoreDbConnection"), options => options.EnableRetryOnFailure())
-            );
+           
 
             
 
