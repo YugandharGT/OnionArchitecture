@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Entities.Contracts;
+using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using WebAPI.Contracts;
 
-namespace WebAPI.Models
+namespace Entities.Models
 {
     /// <summary>
     /// It represents login user attributes
     /// </summary>
-    public class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser :  IdentityUser, IAuditableEntity
     {
         public string FirstName { get; set; }
 

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GenericRepository.cs" />
+    <Compile Remove="IGenericRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OA.Data\OA.Data.csproj" />
   </ItemGroup>
 

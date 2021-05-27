@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Entities;
+using Entities.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -17,12 +18,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using OA.Concrete;
-using OA.Data.Context;
-using OA.Interface;
-using OA.Repo;
+using WebAPI.Business;
+using WebAPI.Data;
+using WebAPI.Interface;
+//using OA.Repo;
 using WebAPI.Infrastructure;
-using WebAPI.Models;
+
 
 namespace WebAPI
 {
@@ -71,7 +72,7 @@ namespace WebAPI
             services.AddApplication();
             #region Authentication with Identity
 
-            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CoreDbContext>()
                 .AddDefaultTokenProviders();
 

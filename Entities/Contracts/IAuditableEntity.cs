@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace WebAPI.Contracts
+namespace Entities.Contracts
 {
     /// <summary>
     /// It is an interface to get shared attributes of entity

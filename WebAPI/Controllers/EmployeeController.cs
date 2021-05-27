@@ -6,8 +6,8 @@ using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using OA.Interface;
-using OA.Repo;
+using WebAPI.Interface;
+//using OA.Repo; //generic repos
 
 namespace WebAPI.Controllers
 {
